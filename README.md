@@ -1,115 +1,163 @@
-<p align="center">
-  <img src="https://graph.org/file/d57d6f83abb6b8d0efb02.jpg" alt="VJ-FILE-STORE-BOT Logo">
-</p>
-<h1 align="center">
-  VJ FILE STORE BOT
-</h1>
+# 📁 VJ File Store Bot
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Welcome+To+VJ-FILE-STORE-BOT;A+Highly+Advance+File+Store+Bot;Made+By+Yt-@Tech_VJ!;With+Clone+Feature+Stream/Download+Link;Custom+Url+Shortner+Auto+Delete+Feature;A+Bot+With+Fully+Advanced+Feature!;Must+Give+Credit+To+Tech+VJ;Because+He+Public+The+Paid+Repo;Thank+You!)
-</p>
+A powerful Telegram File Store Bot with Premium System, Verification, Daily Limits, Force Subscribe, and much more.
 
-## Features
+---
 
-<b><details><summary>Tap On Me For Bot Features</summary>
- 
-- [x] Permanent Link By Using Website [ Premium Feature] 
-- [x] Clone Feature Added [ Premium Feature] 
-- [x] Token Verification Feature 
-- [x] Stram Feature Added With Many Player Support
-- [x] Custom Url Shortner Support Any User Can Add His Own Shortner
-- [x] Batch Support Added, Any User Can Use Batch By Making Bot Admin In His File Store Channel
-- [x] Auto Delete Feature Added
-- [x] Custom Start Message With Picture And Buttons
-</b>
-</details>
+## ✨ Features
 
-## Environment Variables
+### 🔐 Verification System
+- Link Shortener based token verification
+- Once verified, valid for exactly **24 hours** from the time of verification
+- Can be turned **ON / OFF** via config
+- Verified users get unlimited file access for 24 hours
 
-<b><details><summary>Tap On Me For Environment Variable</summary>
+### 👑 Premium System
+- Admin can grant premium access for any number of days
+- Premium users get **unlimited file access** with no verification needed
+- No ads, no daily limits, no shortlinks
+- Expiry tracked in MongoDB — restart-safe
 
-- `API_ID` : Get From [my.telegram.org](https://my.telegram.org)
-- `API_HASH` : Get From [my.telegram.org](https://my.telegram.org)
-- `BOT_TOKEN` : Get From [BotFather](https://telegram.me/BotFather)
-- `BOT_USERNAME` : Your Bot Username Without @
-- `DB_URI` : Mongodb Database Url For Main Bot [Tutorial Watch Here](https://youtu.be/I36_OTWvT2w)
-- `CDB_URI` : Mongodb Database Url For Clone Bot [Tutorial Watch Here](https://youtu.be/I36_OTWvT2w)
-- `ADMINS` : It mean Admin/Owner Id For Broadcasting Message.
-- `LOG_CHANNEL` : Log channel id start with -100xxxxxx
-- `BIN_CHANNEL` : Bin channel id start with -100xxxxxx
-- `FILE_STORE_CHANNEL` : File Store Channel id start with -100xxxxxx
-- `FQDN` : Your Server App Link Without https://
-- `AUTO_DELETE` : Time In Minutes
-- `AUTO_DELETE_TIME` : Time In Seconds
-- `PYTHON_VERSION` : This Variable Is Only For Render, Value IS `3.10.8`
-- `PORT` : This Variable Is Only For Render, Value IS `8080`
-</b>
-</details>
+### 📂 Daily Free File Limit
+- Free users get a set number of files per day (configurable)
+- Resets every day at **12:00 AM IST**
+- Can be turned **ON / OFF** via config
+- When limit is reached, user gets options to Verify or Buy Premium
 
-## See How Bot Look Like
+### 📦 Batch File Support
+- Generate a single link for multiple files
+- Free users receive files up to their daily limit
+- After limit is reached, bot shows how many files are remaining and prompts to Verify or Buy Premium
 
-<b><details><summary>Tap On Me For Demo Bot</summary></b>
+### 📢 Force Subscribe (Multiple Channels)
+- Add unlimited Force Subscribe channels
+- Bot checks each channel separately
+- Only shows **unjoined** channel buttons to the user
+- Includes a Retry button after joining
 
-<img src="https://graph.org/file/bb9c59043c52072e8dc93.jpg" alt="Bot Demo">
-<img src="https://graph.org/file/295e41dfab93acf42a111.jpg" alt="Bot Demo">
-<img src="https://graph.org/file/ccc1b6ab4967a7d155ab8.jpg" alt="Bot Demo">
-<img src="https://graph.org/file/75db5257c39436b734b49.jpg" alt="Bot Demo">
-<img src="https://graph.org/file/1ce62a17012ed5723aaca.jpg" alt="Bot Demo">
-</details>
+### 🔗 File Link Generation
+- Generate shareable links for any file
+- Protected links supported (file cannot be forwarded)
+- Batch links for multiple files
+- Optional personal URL shortener support per user
 
-## Command To Use Bot
+### 🗑️ Auto Delete
+- Files auto-delete after a set time (configurable)
+- Prevents copyright issues
 
-<b><details><summary>Tap On Me For Bot Commands</summary>
+### 📊 Stats (Admin)
+- Total files stored
+- Files added today (IST)
+- Currently verified users
+- Total users
+- Total premium users
 
-🖍️ Main Bot Commands :-
+### 📡 Stream & Download (Optional)
+- Online streaming support
+- Fast download link generation
 
-- `/start` : By This Command You Can Check Bot Is Alive Or Not
-- `/link` : By This Command You Can Generate A Shareable Link Of File By Replying This Command To That File
-- `/batch` : By This Command You Can Generate Multiple File Shareable Link At A Time [Use Like This /batch (first post link) (last post link)]
-- `/base_site` : By This Command You Can Set Your Url Shortner Domain [Use Like This /base_site domain.com]
-- `/api` : By This Command You Can Set Your Url Shortner Api [Use Like This /api (your api key)]
-- `/deletecloned` : By This Command You Can Delete Your Cloned Bot [Use Like This /deletecloned (your bot token)]
-- `/broadcast` : By Using This Command You Can Broadcast A Message To Your Bot User, Reply This Command To Broadcast Message [Owner Only Command]
+---
 
-🖍️ Clone Bot Commands :- 
+## ⚙️ Configuration Variables
 
-- `/start` : By This Command You Can Check Bot Is Alive Or Not
-- `/link` : By This Command You Can Generate A Shareable Link Of File By Replying This Command To That File
-- `/base_site` : By This Command You Can Set Your Url Shortner Domain [Use Like This /base_site domain.com]
-- `/api` : By This Command You Can Set Your Url Shortner Api [Use Like This /api (your api key)]
-- `/broadcast` : By Using This Command You Can Broadcast A Message To Your Bot User, Reply This Command To Broadcast Message [Clone Bot Owner Only Command]
+| Variable | Description | Default |
+|---|---|---|
+| `API_ID` | Telegram API ID | - |
+| `API_HASH` | Telegram API Hash | - |
+| `BOT_TOKEN` | Bot Token from BotFather | - |
+| `ADMINS` | Admin User IDs (space separated) | - |
+| `BOT_USERNAME` | Bot username without @ | - |
+| `DB_URI` | MongoDB connection URI | - |
+| `DB_NAME` | MongoDB database name | `techvj` |
+| `LOG_CHANNEL` | Channel ID for logs | - |
+| `FORCE_SUB_MODE` | Enable Force Subscribe | `True` |
+| `FORCE_SUB_CHANNELS` | Channel IDs (space separated) | - |
+| `VERIFY_MODE` | Enable Verification | `True` |
+| `SHORTLINK_API` | Shortlink API key | - |
+| `SHORTLINK_URL` | Shortlink domain (without https://) | - |
+| `VERIFY_TUTORIAL` | Tutorial link for verification | - |
+| `DAILY_FILE_LIMIT_MODE` | Enable daily free file limit | `True` |
+| `DAILY_FILE_LIMIT` | Number of free files per day | `1` |
+| `PAYMENT_QR` | Payment QR code image URL | - |
+| `PAYMENT_TEXT` | Premium plans text | - |
+| `AUTO_DELETE_MODE` | Enable auto delete | `True` |
+| `AUTO_DELETE` | Delete time in minutes | `30` |
+| `AUTO_DELETE_TIME` | Delete time in seconds | `1800` |
+| `STREAM_MODE` | Enable stream/download links | `False` |
+| `PUBLIC_FILE_STORE` | Allow all users to generate links | `True` |
+| `CLONE_MODE` | Enable clone bot feature | `False` |
+| `PICS` | Start message photo URLs | - |
 
-</b>
-</details>
+---
 
-## Credit
+## 📋 Commands
 
-<b><details><summary>Tap On Me For See Credit</summary>
+### User Commands
+| Command | Description |
+|---|---|
+| `/start` | Start the bot |
+| `/plan` | View premium plans and pricing |
+| `/myplan` | Check your current active plan |
+| `/link` | Reply to a file to generate a shareable link |
+| `/plink` | Reply to a file to generate a protected link |
+| `/batch` | Generate a batch link for multiple files |
+| `/pbatch` | Generate a protected batch link |
+| `/api` | Set your personal shortener API key |
+| `/base_site` | Set your personal shortener domain |
 
-💝 Credit Goes To [Tech VJ](https://telegram.me/Kingvj01)
+### Admin Commands
+| Command | Description |
+|---|---|
+| `/stats` | View bot statistics |
+| `/broadcast` | Broadcast a message to all users |
+| `/addpremium [user_id] [days]` | Grant premium access |
+| `/removepremium [user_id]` | Remove premium access |
 
-🖍️ This Code Is Fully Written Or Coded And Public By [Tech VJ](https://telegram.me/Kingvj01) So Don't Forgot To Give Credit
+---
 
-💖 And Thank You So Much To All Who Help In This Journey 💕
+## 🔄 How Verification Works
 
-Copyright ©️ [Tech VJ](https://telegram.me/Kingvj01)
+1. User clicks **Verify Now** button
+2. Bot generates a shortlink (with ads)
+3. User opens the shortlink and completes it
+4. User gets redirected back to the bot and gets verified
+5. Verification stays valid for **exactly 24 hours**
+6. After 24 hours, user needs to verify again
 
-</b>
-</details>
+---
 
-## About Owner 
+## 💎 Free vs Premium
 
-<b><details><summary>Tap On Me For See Details Of Owner</summary>
+| Feature | Free | Premium |
+|---|---|---|
+| Files per day | Limited (configurable) | Unlimited |
+| Verification required | Yes (every 24h) | Never |
+| Ads / Shortlinks | Yes | No |
+| Direct file access | No | Yes |
+| Fast download & streaming | Yes | Yes |
 
-- YouTube Channel : [Tech VJ](https://youtube.com/@Tech_VJ)
-- Telegram Channel : [VJ Botz](https://telegram.me/VJ_Botz)
-- Contact Link : [King VJ](https://telegram.me/Kingvj01)
-- Instagram Id Link : [Tech VJ](https://instagram.com/tech.vj)
+---
 
-</b>
-</details>
+## 🚀 Deployment
 
+### Using Docker
+```bash
+docker build -t vj-file-store .
+docker run vj-file-store
+```
 
-### Copyright ©️ [Tech VJ](https://telegram.me/Kingvj01)
+### Using Python
+```bash
+pip3 install -r requirements.txt
+python3 bot.py
+```
 
-<b>Selling This Repo Or Code Of This Repo For Money Is Strictly Prohibited 🚫</b>
+---
 
+## 📌 Notes
+
+- MongoDB is required for all data storage including users, premium, verification, and stats
+- All times are based on **IST (Asia/Kolkata)**
+- Daily file limit resets at **12:00 AM IST**
+- Verification expiry is **exactly 24 hours** from the time of verification, not midnight
+- Bot restart does **not** reset verification or premium — all data is in MongoDB
