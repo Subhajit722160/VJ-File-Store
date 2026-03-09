@@ -9,9 +9,11 @@ from datetime import datetime, timedelta
 from config import SHORTLINK_API, SHORTLINK_URL
 from shortzy import Shortzy
 
+# TOKENS dict stays in RAM — it's only used for one-time token validation
+# (short-lived, no need to persist across restarts)
 TOKENS = {}
-# VERIFIED stores: {user_id: datetime_of_verification (IST)}
-VERIFIED = {}
+
+IST = pytz.timezone('Asia/Kolkata')
 
 
 async def get_verify_shorted_link(link):
@@ -22,14 +24,10 @@ async def get_verify_shorted_link(link):
 
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
-    if user.id in TOKENS.keys():
+    if user.id in TOKENS:
         TKN = TOKENS[user.id]
-        if token in TKN.keys():
-            is_used = TKN[token]
-            if is_used == True:
-                return False
-            else:
-                return True
+        if token in TKN:
+            return not TKN[token]  # True if not yet used
     return False
 
 
@@ -43,66 +41,66 @@ async def get_token(bot, userid, link):
 
 
 async def verify_user(bot, userid, token):
-    """Mark user as verified. Verification is valid for exactly 24 hours from now."""
+    """
+    Mark user as verified. Saves verification timestamp to MongoDB.
+    Valid for exactly 24 hours from now (IST).
+    """
+    from plugins.dbusers import db
     user = await bot.get_users(userid)
     TOKENS[user.id] = {token: True}
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    VERIFIED[user.id] = now
+    now = datetime.now(IST)
+    await db.set_user_verified(user.id, now)
 
 
 async def check_verification(bot, userid):
-    """Returns True if user is verified and 24 hours have NOT yet passed."""
+    """
+    Returns True if user is verified and 24 hours have NOT yet passed.
+    Reads from MongoDB — persists across bot restarts.
+    """
+    from plugins.dbusers import db
     user = await bot.get_users(userid)
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    if user.id in VERIFIED:
-        verified_at = VERIFIED[user.id]
-        # Make sure verified_at is timezone-aware
-        if verified_at.tzinfo is None:
-            verified_at = tz.localize(verified_at)
-        elapsed = now - verified_at
-        if elapsed < timedelta(hours=24):
-            return True
-        else:
-            # Expired — remove from dict
-            del VERIFIED[user.id]
-            return False
-    return False
+    verified_at = await db.get_user_verified_at(user.id)
+    if not verified_at:
+        return False
+    now = datetime.now(IST)
+    if verified_at.tzinfo is None:
+        verified_at = IST.localize(verified_at)
+    elapsed = now - verified_at
+    if elapsed < timedelta(hours=24):
+        return True
+    else:
+        # Expired — clear from DB
+        await db.clear_user_verified(user.id)
+        return False
 
 
 def get_verified_users_count():
-    """Returns count of currently verified users (within 24h window)."""
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    count = 0
-    expired_ids = []
-    for uid, verified_at in VERIFIED.items():
-        if verified_at.tzinfo is None:
-            verified_at = tz.localize(verified_at)
-        elapsed = now - verified_at
-        if elapsed < timedelta(hours=24):
-            count += 1
-        else:
-            expired_ids.append(uid)
-    # Clean up expired
-    for uid in expired_ids:
-        del VERIFIED[uid]
-    return count
+    """
+    Returns count of currently verified users (within 24h).
+    Calls db synchronously via a cached count — use get_verified_users_count_async instead.
+    """
+    # Use the async version in commands.py
+    return 0  # placeholder — use get_verified_users_count_async below
 
 
-def get_user_verify_expiry(userid):
+async def get_verified_users_count_async():
+    """Returns count of users whose verification has not yet expired (within 24h)."""
+    from plugins.dbusers import db
+    return await db.count_verified_users()
+
+
+async def get_user_verify_expiry(userid):
     """Returns remaining time string for a verified user, or None if not verified."""
-    tz = pytz.timezone('Asia/Kolkata')
-    now = datetime.now(tz)
-    if userid in VERIFIED:
-        verified_at = VERIFIED[userid]
-        if verified_at.tzinfo is None:
-            verified_at = tz.localize(verified_at)
-        elapsed = now - verified_at
-        remaining = timedelta(hours=24) - elapsed
-        if remaining.total_seconds() > 0:
-            hours, rem = divmod(int(remaining.total_seconds()), 3600)
-            minutes = rem // 60
-            return f"{hours}h {minutes}m"
+    from plugins.dbusers import db
+    verified_at = await db.get_user_verified_at(userid)
+    if not verified_at:
+        return None
+    now = datetime.now(IST)
+    if verified_at.tzinfo is None:
+        verified_at = IST.localize(verified_at)
+    remaining = timedelta(hours=24) - (now - verified_at)
+    if remaining.total_seconds() > 0:
+        hours, rem = divmod(int(remaining.total_seconds()), 3600)
+        minutes = rem // 60
+        return f"{hours}h {minutes}m"
     return None
