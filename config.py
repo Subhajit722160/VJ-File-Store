@@ -26,9 +26,10 @@ ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ
 BOT_USERNAME = environ.get("BOT_USERNAME", "File_Stores_Bot") # without @
 PORT = environ.get("PORT", "8080")
 
-# Force Subscribe Information
-FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', True)) # Set True or False
-FORCE_SUB_CHANNEL = int(environ.get("FORCE_SUB_CHANNEL", "-1001877309572")) # Your Channel ID (Start with -100)
+# Force Subscribe Information (Multiple Channels Supported)
+# Add multiple channel IDs separated by space. Example: "-1001234567890 -1009876543210"
+FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', True))  # Set True or False
+FORCE_SUB_CHANNELS = [int(ch) for ch in environ.get('FORCE_SUB_CHANNELS', '-1001877309572').split() if ch.strip()]
 
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
@@ -58,13 +59,31 @@ BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 # Enable - True or Disable - False
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
-# Verify Info :-
-VERIFY_MODE = bool(environ.get('VERIFY_MODE', True)) # Set True or False
+# ============================================================
+# Verify Info (Token / Link Shortener Verification)
+# ============================================================
+# VERIFY_MODE: Set True to enable verification, False to disable
+VERIFY_MODE = bool(environ.get('VERIFY_MODE', True))  # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_API = environ.get("SHORTLINK_API", "1b81bf73fbebf4a7e12b7a14ce7419cd495a7fba") # shortlink api
-SHORTLINK_URL = environ.get("SHORTLINK_URL", "arolinks.com") # shortlink domain without https://
-VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4") # how to open link 
+SHORTLINK_API = environ.get("SHORTLINK_API", "1b81bf73fbebf4a7e12b7a14ce7419cd495a7fba")  # shortlink api
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "arolinks.com")  # shortlink domain without https://
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4")  # how to open link
+
+# ============================================================
+# Daily Free File Limit Settings
+# ============================================================
+# DAILY_FILE_LIMIT_MODE = True  : Free users get DAILY_FILE_LIMIT files per day for free (no verify needed).
+#                                  After limit is reached, they must verify or buy premium.
+# DAILY_FILE_LIMIT_MODE = False : No free daily limit. User must verify (if VERIFY_MODE=True) or buy premium.
+DAILY_FILE_LIMIT_MODE = bool(environ.get('DAILY_FILE_LIMIT_MODE', True))  # Set True or False
+DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 1))  # Daily free file limit count for free users
+
+# ============================================================
+# Premium / Payment Settings
+# ============================================================
+PAYMENT_QR = environ.get('PAYMENT_QR', 'https://i.ibb.co/Xrbrynst/IMG-20260213-090346-384.jpg')  # Payment QR code picture URL
+PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - \n\n- 20ʀs - 1 ᴡᴇᴇᴋ\n- 49ʀs - 1 ᴍᴏɴᴛʜ\n- 89ʀs - 3 ᴍᴏɴᴛʜs\n- 129ʀs - 6 ᴍᴏɴᴛʜs\n- 149ʀs - 1 ʏᴇᴀʀ\n\n🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs 🎁\n\n○ 🔐 ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ\n○ 🚫 ᴀᴅ-ғʀᴇᴇ ᴇxᴘᴇʀɪᴇɴᴄᴇ\n○ 📂 ᴅɪʀᴇᴄᴛ ғɪʟᴇ ᴀᴄᴄᴇss\n○ 🎬 ᴍᴏᴠɪᴇs, ᴡᴇʙ sᴇʀɪᴇs & ᴀɴɪᴍᴇ (ɪɴ ᴏɴᴇ ᴄʜᴀɴɴᴇʟ — 1 ʏᴇᴀʀ ᴘʟᴀɴ ᴏɴʟʏ)\n○ 👥 ᴘʀᴇᴍɪᴜᴍ ɢʀᴏᴜᴘ ᴀᴄᴄᴇss (1 ʏᴇᴀʀ ᴘʟᴀɴ ᴏɴʟʏ)\n○ 🔞 18+ ʙᴏᴛ ᴍᴇᴍʙᴇʀsʜɪᴘ — 1 ᴍᴏɴᴛʜ ᴀᴄᴄᴇss | 1 ʏᴇᴀʀ ᴘʟᴀɴ ᴏɴʟʏ\n○ 🚀 ʜɪɢʜ-sᴘᴇᴇᴅ ᴅᴏᴡɴʟᴏᴀᴅ\n○ ▶️ ᴍᴜʟᴛɪ-ᴘʟᴀʏᴇʀ sᴛʀᴇᴀᴍɪɴɢ sᴜᴘᴘᴏʀᴛ\n○ ⚡ ᴘʀɪᴏʀɪᴛʏ ʀᴇǫᴜᴇsᴛ ᴄᴏᴍᴘʟᴇᴛɪᴏɴ\n○ 🛠 ᴘʀɪᴏʀɪᴛʏ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ\n○ ⏳ ʀᴇǫᴜᴇsᴛ ᴡɪʟʟ ʙᴇ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ 1ʜ ɪꜰ ᴀᴠᴀɪʟᴀʙʟᴇ\n\n✨ ᴜᴘɪ ɪᴅ - <code>subhajitghoshjio@ybl</code>\n\nᴄʟɪᴄᴋ ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ /myplan\n\n💢 ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ\n\n‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</b>')
 
 # Website Info:
 WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
