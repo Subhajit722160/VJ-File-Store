@@ -589,7 +589,10 @@ async def start(client, message):
 
 @Client.on_message(filters.command("plan") & filters.private)
 async def plan_cmd(client, message):
-    btn = [[InlineKeyboardButton("✅ Check My Plan", callback_data="check_myplan")]]
+    btn = [
+            [InlineKeyboardButton("💳 Pay & Contact Admin", url="https://t.me/SubhajitGhosh0")],
+            [InlineKeyboardButton("✅ Check My Plan", callback_data="check_myplan")]
+    ]
     await message.reply_photo(
         photo=PAYMENT_QR,
         caption=PAYMENT_TEXT,
@@ -785,7 +788,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.message.delete()
 
     elif query.data == "show_plan":
-        btn = [[InlineKeyboardButton("✅ Check My Plan", callback_data="check_myplan")]]
+        btn = [
+            [InlineKeyboardButton("💳 Pay & Contact Admin", url="https://t.me/SubhajitGhosh0")],
+            [InlineKeyboardButton("✅ Check My Plan", callback_data="check_myplan")]
+        ]
         await query.message.reply_photo(
             photo=PAYMENT_QR,
             caption=PAYMENT_TEXT,
