@@ -14,7 +14,7 @@ from plugins.users_api import get_user, update_user_info
 from plugins.database import get_file_details
 from pyrogram.errors import ChatAdminRequired, FloodWait, UserNotParticipant
 from pyrogram.types import *
-from utils import verify_user, check_token, check_verification, get_token, get_verified_users_count, get_user_verify_expiry
+from utils import verify_user, check_token, check_verification, get_token, get_verified_users_count_async, get_user_verify_expiry
 from config import *
 import re
 import json
@@ -620,7 +620,7 @@ async def myplan_cmd(client, message):
             f"• Ad-free experience</b>"
         )
     elif is_verified:
-        remaining = get_user_verify_expiry(user_id)
+        remaining = await get_user_verify_expiry(user_id)
         text = (
             f"<b>✅ Your Plan: FREE (Verified)\n\n"
             f"🔓 Verification Status: Active\n"
@@ -653,7 +653,7 @@ async def stats_cmd(client, message):
         file_stats = await db.get_file_stats()
         total_files = file_stats.get('total', 0)
         today_files = file_stats.get('today_count', 0)
-        verified_count = get_verified_users_count()
+        verified_count = await get_verified_users_count_async()
         total_users = await db.total_users_count()
         premium_count = await db.total_premium_count()
 
