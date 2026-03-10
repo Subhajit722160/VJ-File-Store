@@ -63,11 +63,11 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 # Verify Info (Token / Link Shortener Verification)
 # ============================================================
 # VERIFY_MODE: Set True to enable verification, False to disable
-VERIFY_MODE = bool(environ.get('VERIFY_MODE', True))  # Set True or False
+VERIFY_MODE = bool(environ.get('VERIFY_MODE', False))  # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_API = environ.get("SHORTLINK_API", "1b81bf73fbebf4a7e12b7a14ce7419cd495a7fba")  # shortlink api
-SHORTLINK_URL = environ.get("SHORTLINK_URL", "arolinks.com")  # shortlink domain without https://
+SHORTLINK_API = environ.get("SHORTLINK_API", "")  # shortlink api
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "")  # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/4")  # how to open link
 
 # ============================================================
@@ -77,7 +77,7 @@ VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_V
 #                                  After limit is reached, they must verify or buy premium.
 # DAILY_FILE_LIMIT_MODE = False : No free daily limit. User must verify (if VERIFY_MODE=True) or buy premium.
 DAILY_FILE_LIMIT_MODE = bool(environ.get('DAILY_FILE_LIMIT_MODE', True))  # Set True or False
-DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 1))  # Daily free file limit count for free users
+DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 25))  # Daily free file limit count for free users
 
 # ============================================================
 # Premium / Payment Settings
