@@ -21,7 +21,7 @@ API_ID = int(environ.get("API_ID", "26042863"))
 API_HASH = environ.get("API_HASH", "d4fabc00b0345cd3f0ccdc0c9b750f6e")
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
-PICS = (environ.get('PICS', 'https://telegra.ph/file/3c65c2642f4339a8d3caa.jpg')).split() # Bot Start Picture
+PICS = (environ.get('PICS', 'https://telegra.ph/file/755ae30020c5ddfd331e2.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '919169586').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "UltraFileStoreBot") # without @
 PORT = environ.get("PORT", "8080")
