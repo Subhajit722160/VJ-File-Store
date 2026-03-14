@@ -485,8 +485,9 @@ async def start(client, message):
             )
             filetype = msg.media
             file = getattr(msg, filetype.value)
+            raw_name = file.file_name if file.file_name else 'File'
             title = '@SGBACKUP  ' + ' '.join(
-                filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split())
+                filter(lambda x: not x.startswith('[') and not x.startswith('@'), raw_name.split())
             )
             size = get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
