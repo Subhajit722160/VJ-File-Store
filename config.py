@@ -23,7 +23,7 @@ BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
 PICS = (environ.get('PICS', 'https://telegra.ph/file/3c65c2642f4339a8d3caa.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '919169586').split()]
-BOT_USERNAME = environ.get("BOT_USERNAME", "File_Stores_Bot") # without @
+BOT_USERNAME = environ.get("BOT_USERNAME", "UltraFileStoreBot") # without @
 PORT = environ.get("PORT", "8080")
 
 # Force Subscribe Information (Multiple Channels Supported)
