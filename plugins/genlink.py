@@ -21,6 +21,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+# Collect mode sessions: stores files per user until /done
+COLLECT_SESSIONS = {}
 
 
 async def allowed(_, __, message):
@@ -34,8 +36,30 @@ async def allowed(_, __, message):
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-@Client.on_message((filters.document | filters.video | filters.audio) & filters.private & filters.create(allowed))
+@Client.on_message((filters.document | filters.video | filters.audio| filters.photo) & filters.private & filters.create(allowed))
 async def incoming_gen_link(bot, message):
+    user_id = message.from_user.id
+    if user_id in COLLECT_SESSIONS:
+        file_type = message.media
+        file = getattr(message, file_type.value)
+        raw_file_id = file.file_id
+        raw_unique_id = file.file_unique_id
+        existing_ids = {f["unique_id"] for f in COLLECT_SESSIONS[user_id]["files"]}
+        if raw_unique_id in existing_ids:
+            count = len(COLLECT_SESSIONS[user_id]["files"])
+            return await message.reply(f"⚠️ <b>Duplicate file skipped!</b>\n\n📦 Total collected: <code>{count}</code> files\nSend /done to generate the link.")
+        caption = (message.caption.html if message.caption else "")
+        file_data = {
+            "file_id": raw_file_id,
+            "unique_id": raw_unique_id,
+            "caption": caption,
+            "title": getattr(file, "file_name", ""),
+            "size": file.file_size,
+            "protect": COLLECT_SESSIONS[user_id]["protect"],
+        }
+        COLLECT_SESSIONS[user_id]["files"].append(file_data)
+        count = len(COLLECT_SESSIONS[user_id]["files"])
+        return await message.reply(f"✅ <b>File #{count} added!</b>\n\nSend more files or /done to generate the combined link.")
     username = (await bot.get_me()).username
     file_type = message.media
     file_id, ref = unpack_new_file_id((getattr(message, file_type.value)).file_id)
@@ -207,6 +231,40 @@ async def gen_link_batch(bot, message):
     else:
         await sts.edit(f"<b>⭕ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ʟɪɴᴋ:\n\nContains `{og_msg}` files.\n\n🔗 ᴏʀɪɢɪɴᴀʟ ʟɪɴᴋ :- {share_link}</b>")
 
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+
+@Client.on_message(filters.command(['collect', 'pcollect']) & filters.create(allowed))
+async def start_collect_mode(bot, message):
+    user_id = message.from_user.id
+    protect = "pcollect" in message.text.lower()
+    COLLECT_SESSIONS[user_id] = {"files": [], "protect": protect}
+    await message.reply("✅ <b>Collect mode started!</b>\n\nNow send me all the files one by one.\nWhen you're done, send /done to get a combined link.\n\n🔍 Duplicate files will be filtered automatically.")
+
+
+@Client.on_message(filters.command(['done']) & filters.create(allowed))
+async def finish_collect_mode(bot, message):
+    user_id = message.from_user.id
+    if user_id not in COLLECT_SESSIONS:
+        return await message.reply("❌ You are not in collect mode. Send /collect first.")
+    session = COLLECT_SESSIONS.pop(user_id)
+    outlist = session["files"]
+    total = len(outlist)
+    if total == 0:
+        return await message.reply("❌ No files collected. Please send files after /collect command.")
+    sts = await message.reply(f"⏳ <b>Generating combined link for {total} files...</b>")
+    username = (await bot.get_me()).username
+    with open(f"collectmode_{user_id}.json", "w+") as out:
+        json.dump(outlist, out)
+    post = await bot.send_document(LOG_CHANNEL, f"collectmode_{user_id}.json", file_name="Batch.json", caption="⚠️Generated for filestore collect mode.")
+    os.remove(f"collectmode_{user_id}.json")
+    file_id, ref = unpack_new_file_id(post.document.file_id)
+    user = await get_user(user_id)
+    await db.increment_total_file_count()
+    if WEBSITE_URL_MODE:
+        share_link = f"{WEBSITE_URL}?Tech_VJ=BATCH-{file_id}"
+    else:
+        share_link = f"https://t.me/{username}?start=BATCH-{file_id}"
+    if user["base_site"] and user["shortener_api"] is not None:
+        short_link = await get_short_link(user, share_link)
+        await sts.edit(f"<b>✅ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ᴄᴏᴍʙɪɴᴇᴅ ʟɪɴᴋ:\n\nContains `{total}` files.\n\n🖇️ sʜᴏʀᴛ ʟɪɴᴋ :- {short_link}</b>")
+    else:
+        await sts.edit(f"<b>✅ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ᴄᴏᴍʙɪɴᴇᴅ ʟɪɴᴋ:\n\nContains `{total}` files.\n\n🔗 ᴏʀɪɢɪɴᴀʟ ʟɪɴᴋ :- {share_link}</b>")
