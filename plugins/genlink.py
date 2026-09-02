@@ -14,6 +14,7 @@ import os
 import json
 import base64
 import logging
+import asyncio
 
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
@@ -36,9 +37,65 @@ async def allowed(_, __, message):
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
+async def restore_batch_file(bot, message):
+    """
+    Batch.json ফাইলটি বটকে পাঠালে, তার ভেতরের সবগুলো
+    ফাইল/ভিডিও ইউজারকে আবার একে একে ফেরত পাঠায়।
+    """
+    sts = await message.reply("⏳ <b>Batch.json পড়া হচ্ছে, একটু অপেক্ষা করুন...</b>")
+    path = await message.download()
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            files = json.load(f)
+    except Exception as e:
+        os.remove(path)
+        return await sts.edit(f"❌ <b>Batch.json পড়া গেল না।</b>\n\nকারণ: <code>{e}</code>")
+    os.remove(path)
+
+    total = len(files)
+    if total == 0:
+        return await sts.edit("❌ <b>এই Batch.json ফাইলে কোনো ফাইল নেই।</b>")
+
+    await sts.edit(f"📦 <b>মোট {total}টি ফাইল পাওয়া গেছে। পাঠানো শুরু হচ্ছে...</b>")
+
+    sent, failed = 0, 0
+    for item in files:
+        file_id = item.get("file_id")
+        caption = item.get("caption") or item.get("title") or ""
+        if not file_id:
+            failed += 1
+            continue
+        try:
+            await bot.send_cached_media(
+                chat_id=message.chat.id,
+                file_id=file_id,
+                caption=caption,
+                protect_content=item.get("protect", False),
+            )
+            sent += 1
+        except Exception as e:
+            logger.exception(e)
+            failed += 1
+        await asyncio.sleep(1)  # flood-wait এড়াতে প্রতিটা ফাইলের মাঝে বিরতি
+
+    await sts.edit(
+        f"✅ <b>সম্পন্ন হয়েছে!</b>\n\n"
+        f"পাঠানো হয়েছে: <b>{sent}</b>/{total}\n"
+        f"ব্যর্থ হয়েছে: <b>{failed}</b>"
+    )
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
 @Client.on_message((filters.document | filters.video | filters.audio| filters.photo) & filters.private & filters.create(allowed))
 async def incoming_gen_link(bot, message):
     user_id = message.from_user.id
+
+    # ---- Batch.json পাঠালে সব ফাইল ফেরত পাঠানোর ফিচার ----
+    if message.document and (message.document.file_name or "").lower() == "batch.json":
+        return await restore_batch_file(bot, message)
+
     if user_id in COLLECT_SESSIONS:
         file_type = message.media
         file = getattr(message, file_type.value)
