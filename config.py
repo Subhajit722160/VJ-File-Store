@@ -17,18 +17,18 @@ def is_enabled(value, default):
         return default
       
 # Bot Information
-API_ID = int(environ.get("API_ID", "26042863"))
-API_HASH = environ.get("API_HASH", "d4fabc00b0345cd3f0ccdc0c9b750f6e")
+API_ID = int(environ.get("API_ID", "38945957"))
+API_HASH = environ.get("API_HASH", "2ff2b98dc10045b2aa077e3d3e3e2ec8")
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
 PICS = (environ.get('PICS', 'https://telegra.ph/file/755ae30020c5ddfd331e2.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '919169586').split()]
-BOT_USERNAME = environ.get("BOT_USERNAME", "UltraFileStoreBot") # without @
+BOT_USERNAME = environ.get("BOT_USERNAME", "Insta_Vip_Club_bot") # without @
 PORT = environ.get("PORT", "8080")
 
 # Force Subscribe Information (Multiple Channels Supported)
 # Add multiple channel IDs separated by space. Example: "-1001234567890 -1009876543210"
-FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', True))  # Set True or False
+FORCE_SUB_MODE = bool(environ.get('FORCE_SUB_MODE', False))  # Set True or False
 FORCE_SUB_CHANNELS = [int(ch) for ch in environ.get('FORCE_SUB_CHANNELS', '-1001877309572').split() if ch.strip()]
 
 # Clone Info :-
@@ -46,11 +46,11 @@ DB_NAME = environ.get("DB_NAME", "techvj")
 AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', True)) # Set True or False
 
 # If Auto Delete Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-AUTO_DELETE = int(environ.get("AUTO_DELETE", "30")) # Time in Minutes
-AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "1800")) # Time in Seconds
+AUTO_DELETE = int(environ.get("AUTO_DELETE", "10")) # Time in Minutes
+AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "600")) # Time in Seconds
 
 # Channel Information
-LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1003770134667"))
+LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1004415993500"))
 
 # File Caption Information
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
