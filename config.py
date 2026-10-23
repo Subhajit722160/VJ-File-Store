@@ -68,7 +68,7 @@ VERIFY_MODE = bool(environ.get('VERIFY_MODE', False))  # Set True or False
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
 SHORTLINK_API = environ.get("SHORTLINK_API", "")  # shortlink api
 SHORTLINK_URL = environ.get("SHORTLINK_URL", "")  # shortlink domain without https://
-VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/How_To_Watch_SG_Videos/7")  # how to open link
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "http://t.me/How_To_Watch_Liteshort_Links")  # how to open link
 
 # ============================================================
 # Daily Free File Limit Settings
