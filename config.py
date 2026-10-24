@@ -63,7 +63,7 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 # Verify Info (Token / Link Shortener Verification)
 # ============================================================
 # VERIFY_MODE: Set True to enable verification, False to disable
-VERIFY_MODE = bool(environ.get('VERIFY_MODE', False))  # Set True or False
+VERIFY_MODE = bool(environ.get('VERIFY_MODE', True))  # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
 SHORTLINK_API = environ.get("SHORTLINK_API", "358784d7b7e190165b4f3d2982e8f336e35bcf14")  # shortlink api
