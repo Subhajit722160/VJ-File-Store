@@ -83,7 +83,7 @@ DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 2))  # Daily free file li
 # Premium / Payment Settings
 # ============================================================
 PAYMENT_QR = environ.get('PAYMENT_QR', 'https://i.ibb.co/Xrbrynst/IMG-20260213-090346-384.jpg')  # Payment QR code picture URL
-PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - \n\n- 20ʀs - 1 ᴡᴇᴇᴋ\n- 39ʀs - 1 ᴍᴏɴᴛʜ\n- 69ʀs - 3 ᴍᴏɴᴛʜs\n- 89ʀs - 6 ᴍᴏɴᴛʜs\n- 99ʀs - 1 ʏᴇᴀʀ\n\n🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs 🎁\n\n○ 🔐 ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ\n○ 📂 ᴅɪʀᴇᴄᴛ ғɪʟᴇ ᴀᴄᴄᴇss\n○ 📢 ᴇxᴄʟᴜsɪᴠᴇ ᴘʀᴇᴍɪᴜᴍ ᴄʜᴀɴɴᴇʟ\n○ ⏳ ʀᴇǫᴜᴇsᴛ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ 1ʜ ɪғ ᴀᴠᴀɪʟᴀʙʟᴇ\n○ 🛠 ᴘʀɪᴏʀɪᴛʏ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ\n\n✨ ᴜᴘɪ ɪᴅ - <code>subhajitghoshjio@ybl</code>\n\nᴄʟɪᴄᴋ ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ /myplan\n\n💢 ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ\n\n‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</b>')
+PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - \n\n- 20ʀs - 1 ᴡᴇᴇᴋ\n- 39ʀs - 1 ᴍᴏɴᴛʜ\n- 69ʀs - 3 ᴍᴏɴᴛʜs\n- 89ʀs - 6 ᴍᴏɴᴛʜs\n- 99ʀs - 1 ʏᴇᴀʀ\n\n🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs 🎁\n\n○ 🔐 ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ\n○ 📂 ᴅɪʀᴇᴄᴛ ғɪʟᴇ ᴀᴄᴄᴇss\n○ 📢 ᴇxᴄʟᴜsɪᴠᴇ ᴘʀᴇᴍɪᴜᴍ ᴄʜᴀɴɴᴇʟ\n○ 🛠 ᴘʀɪᴏʀɪᴛʏ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ\n\n✨ ᴜᴘɪ ɪᴅ - <code>subhajitghoshjio@ybl</code>\n\nᴄʟɪᴄᴋ ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ /myplan\n\n💢 ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ\n\n‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</b>')
 
 # Website Info:
 WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
