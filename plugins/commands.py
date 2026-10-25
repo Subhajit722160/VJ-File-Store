@@ -205,10 +205,10 @@ async def start(client, message):
     username = (await client.get_me()).username
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/SGBACKUP')
+            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/@InstaVipClub')
         ], [
-            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/SGBACKUP'),
-            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/SGBACKUP')
+            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/@InstaVipClub'),
+            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/@InstaVipClub')
         ], [
             InlineKeyboardButton('💁‍♀️ ʜᴇʟᴘ', callback_data='help'),
             InlineKeyboardButton('😊 ᴀʙᴏᴜᴛ', callback_data='about')
@@ -486,7 +486,7 @@ async def start(client, message):
             filetype = msg.media
             file = getattr(msg, filetype.value)
             raw_name = file.file_name if file.file_name else 'File'
-            title = '@SGBACKUP  ' + ' '.join(
+            title = '@InstaVipClub  ' + ' '.join(
                 filter(lambda x: not x.startswith('[') and not x.startswith('@'), raw_name.split())
             )
             size = get_size(file.file_size)
