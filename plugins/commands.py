@@ -135,15 +135,15 @@ async def handle_file_access(client, message, file_id, f_caption, pre="", is_bat
             if VERIFY_MODE:
                 btn.append([
                     InlineKeyboardButton(
-                        "🔓 Verify Now - Unlimited Access",
+                        "🔓 Verify Now - Download Video",
                         url=await get_token(client, user_id, f"https://telegram.me/{username}?start=")
                     )
                 ])
                 btn.append([
-                    InlineKeyboardButton("❓ How To Verify", url=VERIFY_TUTORIAL)
+                    InlineKeyboardButton("❓ How To Verify & Download", url=VERIFY_TUTORIAL)
                 ])
             btn.append([
-                InlineKeyboardButton("👑 Buy Premium - Unlimited Access", callback_data="show_plan")
+                InlineKeyboardButton("👑 Buy Premium - Direct Video Access", callback_data="show_plan")
             ])
 
             await message.reply_text(
@@ -166,11 +166,11 @@ async def handle_file_access(client, message, file_id, f_caption, pre="", is_bat
             if not await check_verification(client, user_id):
                 btn = [
                     [InlineKeyboardButton(
-                        "🔓 Verify Now - Unlimited Access",
+                        "🔓 Verify Now - Download Video",
                         url=await get_token(client, user_id, f"https://telegram.me/{username}?start=")
                     )],
-                    [InlineKeyboardButton("❓ How To Verify", url=VERIFY_TUTORIAL)],
-                    [InlineKeyboardButton("👑 Buy Premium - Unlimited Access", callback_data="show_plan")]
+                    [InlineKeyboardButton("❓ How To Verify & Download", url=VERIFY_TUTORIAL)],
+                    [InlineKeyboardButton("👑 Buy Premium - Direct Video Access", callback_data="show_plan")]
                 ]
                 await message.reply_text(
                     text="<b>🔒 You are not verified!\nKindly verify to access this file.</b>",
@@ -275,11 +275,11 @@ async def start(client, message):
                 if VERIFY_MODE:
                     btn = [
                         [InlineKeyboardButton(
-                            "🔓 Verify Now - Unlimited Access",
+                            "🔓 Verify Now - Download Video",
                             url=await get_token(client, user_id, f"https://telegram.me/{username}?start=")
                         )],
-                        [InlineKeyboardButton("❓ How To Verify", url=VERIFY_TUTORIAL)],
-                        [InlineKeyboardButton("👑 Buy Premium - Unlimited Access", callback_data="show_plan")]
+                        [InlineKeyboardButton("❓ How To Verify & Download", url=VERIFY_TUTORIAL)],
+                        [InlineKeyboardButton("👑 Buy Premium - Direct Video Access", callback_data="show_plan")]
                     ]
                     await message.reply_text(
                         text="<b>🔒 You are not verified!\nKindly verify to access this file.</b>",
@@ -323,11 +323,11 @@ async def start(client, message):
             btn = []
             if VERIFY_MODE:
                 btn.append([InlineKeyboardButton(
-                    "🔓 Verify Now - Unlimited Access",
+                    "🔓 Verify Now - Download Video",
                     url=await get_token(client, user_id, f"https://telegram.me/{username}?start=")
                 )])
-                btn.append([InlineKeyboardButton("❓ How To Verify", url=VERIFY_TUTORIAL)])
-            btn.append([InlineKeyboardButton("👑 Buy Premium - Unlimited Access", callback_data="show_plan")])
+                btn.append([InlineKeyboardButton("❓ How To Verify & Download", url=VERIFY_TUTORIAL)])
+            btn.append([InlineKeyboardButton("👑 Buy Premium - Direct Video Access", callback_data="show_plan")])
             await sts.edit(
                 f"<b>⚠️ Daily Free File Limit Reached!\n\n"
                 f"You can get <b>{DAILY_FILE_LIMIT}</b> free file(s) per day.\n"
@@ -432,11 +432,11 @@ async def start(client, message):
             btn = []
             if VERIFY_MODE:
                 btn.append([InlineKeyboardButton(
-                    "🔓 Verify Now - Unlimited Access",
+                    "🔓 Verify Now - Download Video",
                     url=await get_token(client, user_id, f"https://telegram.me/{username}?start=")
                 )])
-                btn.append([InlineKeyboardButton("❓ How To Verify", url=VERIFY_TUTORIAL)])
-            btn.append([InlineKeyboardButton("👑 Buy Premium - Unlimited Access", callback_data="show_plan")])
+                btn.append([InlineKeyboardButton("❓ How To Verify & Download", url=VERIFY_TUTORIAL)])
+            btn.append([InlineKeyboardButton("👑 Buy Premium - Direct Video Access", callback_data="show_plan")])
             await client.send_message(
                 chat_id=message.from_user.id,
                 text=(
@@ -826,10 +826,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "start":
         buttons = [[
-            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/SGBACKUP')
+            InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/InstaVipClub')
         ], [
-            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/SGBACKUP'),
-            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/SGBACKUP')
+            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/InstaVipClub'),
+            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/InstaVipClub')
         ], [
             InlineKeyboardButton('🤖 ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ᴄʟᴏɴᴇ ʙᴏᴛ', callback_data='clone')
         ], [
