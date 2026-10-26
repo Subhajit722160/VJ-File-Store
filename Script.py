@@ -52,7 +52,7 @@ If You Want To Remove Api Then Copy This And Send To Bot - `/api None`"""
 
 🧑🏻‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ: <a href=https://t.me/SubhajitGhosh0>𝐒𝐮𝐛𝐡𝐚𝐣𝐢𝐭 𝐆𝐡𝐨𝐬𝐡</a>
 
-👥 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ: <a href=https://t.me/SG_Movies_Request>𝐒𝐮𝐩𝐩𝐨𝐫𝐭</a>
+👥 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ: <a href=https://t.me/SGBACKUP>𝐒𝐮𝐩𝐩𝐨𝐫𝐭</a>
 
 📢 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ: <a href=https://t.me/SGBACKUP>𝐒𝐆 𝐔𝐩𝐝𝐚𝐭𝐞</a></b>
 """
