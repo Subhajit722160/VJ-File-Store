@@ -486,7 +486,7 @@ async def start(client, message):
             filetype = msg.media
             file = getattr(msg, filetype.value)
             raw_name = file.file_name if file.file_name else 'File'
-            title = '@InstaVipClub  ' + ' '.join(
+            title = ' '.join(
                 filter(lambda x: not x.startswith('[') and not x.startswith('@'), raw_name.split())
             )
             size = get_size(file.file_size)
