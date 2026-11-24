@@ -103,9 +103,11 @@ async def _fast_approve_all(client, peer):
         return True
     except FloodWait as e:
         await asyncio.sleep(e.value + 1)
+        return "FloodWait"
     except Exception as e:
         logger.info(f"Fast approve-all not available: {e}")
-    return False
+        return f"{type(e).__name__}: {e}"
+    return None
 
 
 async def approve_all_requests(client, chat_id, status_msg):
@@ -115,7 +117,9 @@ async def approve_all_requests(client, chat_id, status_msg):
     last_edit = 0
 
     # Step 1: quick bulk approve (if Telegram allows it for bots)
-    await _fast_approve_all(client, peer)
+    stats["fast_error"] = await _fast_approve_all(client, peer)
+    stats["fetch_error"] = None
+    stats["pages"] = 0
 
     # Step 2: go through the remaining requests one by one,
     # page by page. Failed ones are skipped, never retried forever.
@@ -140,11 +144,13 @@ async def approve_all_requests(client, chat_id, status_msg):
             continue
         except Exception as e:
             logger.error(f"ApproveAll fetch error: {e}")
+            stats["fetch_error"] = f"{type(e).__name__}: {e}"
             break
 
         importers = res.importers
         if not importers:
             break
+        stats["pages"] += 1
 
         users_map = {u.id: u for u in res.users}
         await asyncio.gather(
@@ -208,6 +214,9 @@ async def approve_all_cmd(client, message):
             f"✅ Approved: <code>{stats['approved']}</code>\n"
             f"⏭ Skipped (deleted/blocked/failed): <code>{stats['skipped']}</code>\n"
             f"⏱ Time: <code>{took}s</code></b>"
+            + (f"\n\n<b>Bulk approve error:</b> <code>{stats['fast_error']}</code>" if stats.get("fast_error") else "")
+            + (f"\n\n<b>Fetch error:</b> <code>{stats['fetch_error']}</code>" if stats.get("fetch_error") else "")
+            + ("\n\n<b>Telegram returned 0 pending requests to the bot.</b>" if stats.get("pages") == 0 and not stats.get("fetch_error") else "")
         )
     except Exception as e:
         logger.exception("approveall failed")
