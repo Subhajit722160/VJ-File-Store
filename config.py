@@ -66,7 +66,7 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 VERIFY_MODE = bool(environ.get('VERIFY_MODE', True))  # Set True or False
 
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-SHORTLINK_API = environ.get("SHORTLINK_API", "358784d7b7e190165b4f3d2982e8f336e35bcf14")  # shortlink api
+SHORTLINK_API = environ.get("SHORTLINK_API", "ee7b431877d119fa0c6a701531a484cf415ad7e4")  # shortlink api
 SHORTLINK_URL = environ.get("SHORTLINK_URL", "liteshort.com")  # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "http://t.me/How_To_Watch_Liteshort_Links")  # how to open link
 
@@ -82,9 +82,8 @@ DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 2))  # Daily free file li
 # ============================================================
 # Premium / Payment Settings
 # ============================================================
-PAYMENT_QR = environ.get('PAYMENT_QR', 'https://i.ibb.co/43K0xSy/IMG-20261025-185144-904.jpg')  # Payment QR code picture URL
-PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - \n\n- 15ʀs - 1 ᴍᴏɴᴛʜ\n- 30ʀs - 2 ᴍᴏɴᴛʜ\n- 45ʀs - 3 ᴍᴏɴᴛʜs\n- 90ʀs - 6 ᴍᴏɴᴛʜs\n\n🎁 ᴘʀᴇᴍɪᴜᴍ ғᴇᴀᴛᴜʀᴇs 🎁\n\n○ 🔐 ɴᴏ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪғʏ\n○ 📂 ᴅɪʀᴇᴄᴛ ғɪʟᴇ ᴀᴄᴄᴇss\n○ 📢 ᴇxᴄʟᴜsɪᴠᴇ ᴘʀᴇᴍɪᴜᴍ ᴄʜᴀɴɴᴇʟ\n○ 🛠 ᴘʀɪᴏʀɪᴛʏ ᴀᴅᴍɪɴ sᴜᴘᴘᴏʀᴛ\n\n✨ ᴜᴘɪ ɪᴅ - <code>BHARATPE09912258040@yesbankltd</code>\n\nᴄʟɪᴄᴋ ᴛᴏ ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴘʟᴀɴ /myplan\n\n💢 ᴍᴜsᴛ sᴇɴᴅ sᴄʀᴇᴇɴsʜᴏᴛ ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ\n\n‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</b>')
-
+PAYMENT_QR = environ.get('PAYMENT_QR', 'https://i.ibb.co/vCwSWTqv/IMG-20261124-151030-211.jpg')  # Payment QR code picture URL
+PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>💳 ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴ – ᴘʀɪᴄᴇ ʟɪsᴛ 👑\n\n🔥 30 ᴅᴀʏs – ₹25 (ᴍᴏɴᴛʜʟʏ ᴘʟᴀɴ) |\n\n💎 60 ᴅᴀʏs – ₹45 (10% ᴏғғ) |\n\n🎁 90 ᴅᴀʏs – ₹64 (15% ᴏғғ) |\n\n👑 180 ᴅᴀʏs – ₹119 (20% ᴏғғ) |\n\n📌 ᴏғғɪᴄɪᴀʟ ᴜᴘɪ ɪᴅ: <code>BHARATPE09912258040@yesbankltd</code>\n\n👆 (ᴛᴀᴘ ᴀɴᴅ ʜᴏʟᴅ ᴛʜᴇ ᴜᴘɪ ɪᴅ ᴀʙᴏᴠᴇ ᴛᴏ ᴄᴏᴘʏ ɪᴛ ɪɴsᴛᴀɴᴛʟʏ) 👆\n\n📸 ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ, ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ ᴘᴀʏᴍᴇɴᴛ sᴄʀᴇᴇɴsʜᴏᴛ ғᴏʀ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ. 🙏\n\n❤️ ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴏᴏsɪɴɢ ᴜs!</b>')
 # Website Info:
 WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
 
