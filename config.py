@@ -83,7 +83,7 @@ DAILY_FILE_LIMIT = int(environ.get('DAILY_FILE_LIMIT', 2))  # Daily free file li
 # Premium / Payment Settings
 # ============================================================
 PAYMENT_QR = environ.get('PAYMENT_QR', 'https://i.ibb.co/vCwSWTqv/IMG-20261124-151030-211.jpg')  # Payment QR code picture URL
-PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>💳 ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴ – ᴘʀɪᴄᴇ ʟɪsᴛ 👑\n\n🔥 30 ᴅᴀʏs – ₹25 (ᴍᴏɴᴛʜʟʏ ᴘʟᴀɴ) |\n\n💎 60 ᴅᴀʏs – ₹45 (10% ᴏғғ) |\n\n🎁 90 ᴅᴀʏs – ₹64 (15% ᴏғғ) |\n\n👑 180 ᴅᴀʏs – ₹119 (20% ᴏғғ) |\n\n📌 ᴏғғɪᴄɪᴀʟ ᴜᴘɪ ɪᴅ: <code>BHARATPE09912258040@yesbankltd</code>\n\n👆 (ᴛᴀᴘ ᴀɴᴅ ʜᴏʟᴅ ᴛʜᴇ ᴜᴘɪ ɪᴅ ᴀʙᴏᴠᴇ ᴛᴏ ᴄᴏᴘʏ ɪᴛ ɪɴsᴛᴀɴᴛʟʏ) 👆\n\n📸 ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ, ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ ᴘᴀʏᴍᴇɴᴛ sᴄʀᴇᴇɴsʜᴏᴛ ғᴏʀ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ. 🙏\n\n❤️ ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴏᴏsɪɴɢ ᴜs!</b>')
+PAYMENT_TEXT = environ.get('PAYMENT_TEXT', '<b>💳 ᴘʀᴇᴍɪᴜᴍ ᴘʟᴀɴ – ᴘʀɪᴄᴇ ʟɪsᴛ 👑\n\n🔥 30 ᴅᴀʏs – ₹15 |\n\n💎 60 ᴅᴀʏs – ₹30 |\n\n🎁 90 ᴅᴀʏs – ₹45 |\n\n👑 180 ᴅᴀʏs – ₹90 |\n\n📌 ᴏғғɪᴄɪᴀʟ ᴜᴘɪ ɪᴅ: <code>BHARATPE09912258040@yesbankltd</code>\n\n👆 (ᴛᴀᴘ ᴀɴᴅ ʜᴏʟᴅ ᴛʜᴇ ᴜᴘɪ ɪᴅ ᴀʙᴏᴠᴇ ᴛᴏ ᴄᴏᴘʏ ɪᴛ ɪɴsᴛᴀɴᴛʟʏ) 👆\n\n📸 ᴀғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ, ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ ᴘᴀʏᴍᴇɴᴛ sᴄʀᴇᴇɴsʜᴏᴛ ғᴏʀ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ. 🙏\n\n❤️ ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴏᴏsɪɴɢ ᴜs!</b>')
 # Website Info:
 WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
 
